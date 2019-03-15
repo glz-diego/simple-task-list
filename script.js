@@ -44,100 +44,10 @@ const guestData = [
     }
  }
  
- //adds a record as entered in the form
- function add() {
-     //get a reference to the fields in html
-     let task = document.querySelector("#task").value;
-    
-    //create a transaction and attempt to add data
-     var request = db.transaction(["guest"], "readwrite")
-     .objectStore("guest")
-     .add({ task: task });
- 
-    //when successfully added to the database
-     request.onsuccess = function(event) {
-         console.log(`${task} has been added to your database.`);
-     };
- 
-    //when not successfully added to the database
-     request.onerror = function(event) {
-     console.log(`Unable to add data\r\n${task} is already in your database! `);
-     }
-
-     readAll();
- }
- 
- //not used in code example
- //reads one record by id
- function read() {
-    //get a transaction
-    var transaction = db.transaction(["guest"]);
-    
-    //create the object store
-    var objectStore = transaction.objectStore("guest");
- 
-    //get the data by id
-    var request = objectStore.get("asiemer@hotmail.com");
-    
-    request.onerror = function(event) {
-       console.log("Unable to retrieve data from database!");
-    };
-    
-    request.onsuccess = function(event) {
-       // Do something with the request.result!
-       if(request.result) {
-          console.log("Task: " + request.result.task);
-       }
-       
-       else {
-          console.log("This task couldn't be found in your database!");
-       }
-    };
- }
- 
- //reads all the data in the database
- function readAll() {
-     clearList();
-     
-    var objectStore = db.transaction("guest").objectStore("guest");
-    
-    //creates a cursor which iterates through each record
-    objectStore.openCursor().onsuccess = function(event) {
-       var cursor = event.target.result;
-       
-       if (cursor) {
-          console.log("Task: " + cursor.value.task);
-          addEntry(cursor.value.task);
-          cursor.continue();
-       }
-       
-       else {
-          console.log("No more entries!");
-       }
-    };
- }
-
- //deletes a record by id
- function remove() {
-     let delid = document.querySelector("#delid").value;
-    var request = db.transaction(["guest"], "readwrite")
-    .objectStore("guest")
-    .delete(delid);
-    
-    request.onsuccess = function(event) {
-       console.log("Entry has been removed from your database.");
-    };
- }
-
- function addEntry(firstname, lastname, email, notes) {
-     // Your existing code unmodified...
-    var iDiv = document.createElement('div');
-    iDiv.className = 'entry';
-    iDiv.innerHTML = task + "<HR>";
-    document.querySelector("#entries").appendChild(iDiv);
- }
- function clearList() {
-     document.querySelector("#entries").innerHTML = "";
- }
- 
- initDatabase();
+ function todoList() {
+  var item = document.getElementById("todoInput").value
+  var text = document.createTextNode(item)
+  var newItem = document.createElement("li")
+  newItem.appendChild(text)
+  document.getElementById("todoList").appendChild(newItem)
+}
