@@ -97,7 +97,16 @@ function read() {
    };
 }
 
+function img() {
+  var img = document.createElement("IMG");
+  img.setAttribute("src", "Trash.png");
+  img.setAttribute("width", "10");
+  img.setAttribute("height", "10");
+  document.body.appendChild(img);
+}
+
 function addEntry(task) {
+   img();
    var node = document.createElement("LI");
    var textnode = document.createTextNode(task);
    node.appendChild(textnode);

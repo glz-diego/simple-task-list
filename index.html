@@ -11,33 +11,36 @@
     <script src="script.js"></script>
 </head>
 <body style="background-image: url(to-do-list.jpg); background-size: cover; background-repeat: no-repeat;">
-    <div class="container-fluid">
+    <div>
         <div class="row">
-            <div class="col-sm-6 col-md-6 col-lg-6" style="margin: 10px;">
+            <div style="margin: 10px;">
                 <h1 style="text-shadow: 1px 1px 1px white;">Things To Do: </h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-6 col-md-6 col-lg-6" style="border-right: 2px dashed #0069D9;">
+        <div>
+            <div style="border-bottom: 2px dashed #0069D9;">
                 <form>
                     <label style="margin-left: 15px; margin-top: 5px; font-size: 20px;"><strong style="text-shadow: 1px 1px 12px white;">New task: </strong></label>
-				<div class="col-sm-9 col-md-9 col-lg-9">
+				<div>
 					<input type="text" name="task" id="task">
 				</div>
                     <input type="button" value="add" id="btn" style="margin: 15px;" class="btn-primary">
                 </form>
+                <div>
+                    <label style="margin-left: 15px; margin-top: 5px; font-size: 20px;"><strong style="text-shadow: 1px 1px 12px white;">Task to delete: </strong></label>
+                    <div>
+                        <input type="text" id="delid">
+                    </div>
+                    <input type="button" value="delete" id="del" style="margin: 15px;" class="btn-primary">
+                </div>
             </div>
-            <div class="col-sm-6 col-md-6 col-lg-6">
+            <div>
                 <input type="button" value="View Task List" style="margin: 15px;" class="btn btn-primary" id="all">
                 <div id="entries"></div>
             </div>
         </div>
     </div>
-    <div>
-        Task to delete: <input type="text" id="delid">
-        <input type="button" value="delete" id="del">
-    </div>
-    <script>
+        <script>
         document.querySelector("#btn").addEventListener("click", add);
         document.querySelector("#all").addEventListener("click", readAll);
         document.querySelector("#del").addEventListener("click", remove);
