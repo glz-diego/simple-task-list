@@ -1,16 +1,12 @@
-//some sample data
 const taskData = [
    { id: new Date().getTime(), description: "task1" },
    { id: new Date().getTime(), description: "task2" }
 ];
 
-//the database reference
 let db;
 
-//initializes the database
 function initDatabase() {
 
-   //create a unified variable for the browser variant
    window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
 
    window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
@@ -22,63 +18,60 @@ function initDatabase() {
          window.alert("Your browser doesn't support a stable version of IndexedDB.")
    }
 
-   //attempt to open the database
-   let request = window.indexedDB.open("tasks", 1);
+  var request = window.indexedDB.open("tasks", 4);
+
+  request.onupgradeneeded = function(event) {
+    db = event.target.result;
+    
+    db.onerror = function(event) {
+      console.log("Error in upgrade")
+    };
+
+    // Create an objectStore for this database
+    const objectStore = db.createObjectStore("tasks", { keyPath: "id" });
+
+  };
+
    request.onerror = function(event) {
       console.log(event);
+      console.log("Error" + event)
    };
 
-   //map db to the opening of a database
    request.onsuccess = function(event) { 
       db = request.result;
       console.log("success: " + db);
    };
 
-   //if no database, create one and fill it with data
-   request.onupgradeneeded = function(event) {
-      db = event.target.result;
-      var objectStore = db.createObjectStore("tasks", {keyPath: "id"});
-      
-      for (var i in taskData) {
-         objectStore.add(taskData[i]);
-      }
-   }
+   console.log(request)
 }
 
-//adds a record as entered in the form
 function add() {
-   //get a reference to the fields in html
    let task = document.querySelector("#task").value;
 
-   //alert(id + name + email + age);
-   
+   console.dir(db.transaction(['tasks']))
    //create a transaction and attempt to add data
-   var request = db.transaction(["tasks"], "readwrite")
+   let transaction = db.transaction(['tasks'], 'readwrite');
+
+   transaction.oncomplete = function(event) {
+      console.log("transaction complete")
+   };
+
+   transaction.onerror = function(event) {
+    console.log(event)
+  };
+
+   transaction
    .objectStore("tasks")
    .add({ id: new Date().getTime(), description: task });
 
-   //when successfully added to the database
-   request.onsuccess = function(event) {
-      alert(`${task} has been added to your database.`);
-      readAll();
-   };
-
-   //when not successfully added to the database
-   request.onerror = function(event) {
-   alert(`Unable to add data\r\n${task} is already in your database! `);
-   }
+   readAll()
 }
 
-//not used in code example
-//reads one record by id
 function read() {
-   //get a transaction
    var transaction = db.transaction(["task"]);
    
-   //create the object store
    var objectStore = transaction.objectStore("task");
 
-   //get the data by id
    var request = objectStore.get("00-03");
    
    request.onerror = function(event) {
@@ -86,7 +79,6 @@ function read() {
    };
    
    request.onsuccess = function(event) {
-      // Do something with the request.result!
       if(request.result) {
          alert("Task: " + request.result.task);
       }
@@ -97,19 +89,16 @@ function read() {
    };
 }
 
-function img() {
+function addEntry(task) {
   var img = document.createElement("IMG");
   img.setAttribute("src", "Trash.png");
-  img.setAttribute("width", "10");
-  img.setAttribute("height", "10");
-  document.body.appendChild(img);
-}
-
-function addEntry(task) {
-   img();
+  img.setAttribute("width", "20");
+  img.setAttribute("height", "20");
    var node = document.createElement("LI");
    var textnode = document.createTextNode(task);
+   node.appendChild(img);
    node.appendChild(textnode);
+   node.onclick = "remove()";
    document.getElementById("entries").appendChild(node);
 }
 
@@ -145,7 +134,7 @@ function remove() {
    
    request.onsuccess = function(event) {
       alert("Entry has been removed from your database.");
-   };
-}
+   }};
+
 
 initDatabase();

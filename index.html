@@ -22,25 +22,25 @@
                 <form>
                     <label style="margin-left: 15px; margin-top: 5px; font-size: 20px;"><strong style="text-shadow: 1px 1px 12px white;">New task: </strong></label>
 				<div>
-					<input type="text" name="task" id="task">
+					<input type="text" name="task" id="task" class="form-control" autofocus>
 				</div>
                     <input type="button" value="add" id="btn" style="margin: 15px;" class="btn-primary">
                 </form>
                 <div>
                     <label style="margin-left: 15px; margin-top: 5px; font-size: 20px;"><strong style="text-shadow: 1px 1px 12px white;">Task to delete: </strong></label>
                     <div>
-                        <input type="text" id="delid">
+                        <input type="text" id="delid" style="width: 250px;" class="form-control">
                     </div>
                     <input type="button" value="delete" id="del" style="margin: 15px;" class="btn-primary">
                 </div>
             </div>
             <div>
                 <input type="button" value="View Task List" style="margin: 15px;" class="btn btn-primary" id="all">
-                <div id="entries"></div>
+                <div id="entries" style="size: 15px;"></div>
             </div>
         </div>
     </div>
-        <script>
+    <script>
         document.querySelector("#btn").addEventListener("click", add);
         document.querySelector("#all").addEventListener("click", readAll);
         document.querySelector("#del").addEventListener("click", remove);
