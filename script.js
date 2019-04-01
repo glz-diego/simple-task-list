@@ -27,7 +27,6 @@ function initDatabase() {
       console.log("Error in upgrade")
     };
 
-    // Create an objectStore for this database
     const objectStore = db.createObjectStore("tasks", { keyPath: "id" });
 
   };
@@ -88,18 +87,17 @@ function read() {
       }
    };
 }
+var iDiv;
+function addEntry() {
+  let task = document.querySelector("#newTask").value;
+  if (task != "") {
+    document.querySelector("#newTask").value = "";
+  }
+  iDIV = document.createElement('DIV');
+  iDIV.innerHTML = "<input id='todo${item.itemid}' type='checkbox'/>&nbsp;" + task;
+  document.querySelector('#entries').appendChild(iDIV);
 
-function addEntry(task) {
-  var img = document.createElement("IMG");
-  img.setAttribute("src", "Trash.png");
-  img.setAttribute("width", "20");
-  img.setAttribute("height", "20");
-   var node = document.createElement("LI");
-   var textnode = document.createTextNode(task);
-   node.appendChild(img);
-   node.appendChild(textnode);
-   node.onclick = "remove()";
-   document.getElementById("entries").appendChild(node);
+   // object.onclick = function(){myScript};
 }
 
 function clearList() {
@@ -125,16 +123,12 @@ function readAll() {
    };
 }
 
-//deletes a record by id
-function remove() {
-   let delid = document.querySelector("#delid").value;
-   var request = db.transaction(["tasks"], "readwrite")
-   .objectStore("tasks")
-   .delete(parseInt(delid));
-   
-   request.onsuccess = function(event) {
-      alert("Entry has been removed from your database.");
-   }};
-
+function clearAll() {
+ var checkBox = document.getElementById("entries");
+ let inputData = document.getElementById("newTask");
+ // if (checkBox.checked == true){
+ // document.getElementById("todo${item.itemid}").innerHTML = "";
+ // }
+}
 
 initDatabase();

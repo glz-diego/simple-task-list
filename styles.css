@@ -1,19 +1,12 @@
 .form-check-input{
 	margin-left: 10px;
 }
-li{
-	list-style: none;
-	margin-left: 10px;
-}
 #entries{
 	size: 15px;
 }
 .form-control{
 	margin-left: 25px;
 }
-#task{
-	width: 250px;
-}
-#task2{
+#newTask{
 	width: 250px;
 }

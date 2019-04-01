@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>TaskList</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -21,29 +21,22 @@
             <div style="border-bottom: 2px dashed #0069D9;">
                 <form>
                     <label style="margin-left: 15px; margin-top: 5px; font-size: 20px;"><strong style="text-shadow: 1px 1px 12px white;">New task: </strong></label>
-				<div>
-					<input type="text" name="task" id="task" class="form-control" autofocus>
-				</div>
-                    <input type="button" value="add" id="btn" style="margin: 15px;" class="btn-primary">
+    				<div>
+    					<input type="text" name="task" id="newTask" class="form-control" autofocus>
+    				</div>
+                    <input type="button" value="add" id="btn" style="margin: 15px;" class="btn-primary" onclick="addEntry()">
                 </form>
-                <div>
-                    <label style="margin-left: 15px; margin-top: 5px; font-size: 20px;"><strong style="text-shadow: 1px 1px 12px white;">Task to delete: </strong></label>
-                    <div>
-                        <input type="text" id="delid" style="width: 250px;" class="form-control">
-                    </div>
-                    <input type="button" value="delete" id="del" style="margin: 15px;" class="btn-primary">
-                </div>
             </div>
             <div>
+                <div id="entries" style="margin-left: 15px;"></div>
                 <input type="button" value="View Task List" style="margin: 15px;" class="btn btn-primary" id="all">
-                <div id="entries" style="size: 15px;"></div>
             </div>
         </div>
     </div>
     <script>
         document.querySelector("#btn").addEventListener("click", add);
         document.querySelector("#all").addEventListener("click", readAll);
-        document.querySelector("#del").addEventListener("click", remove);
+        // document.querySelector("#del").addEventListener("click", clearAll);
     </script>
 </body>
 </html>
