@@ -131,4 +131,14 @@ function clearAll() {
  // }
 }
 
+function checkbox() {
+  var checkBox = document.getElementById("entries");
+  var text = document.getElementById("todo${item.itemid}");
+  if (checkBox.checked == true){
+    text.style.display = "none";
+  } else {
+     text.style.display = "block";
+  }
+}
+
 initDatabase();

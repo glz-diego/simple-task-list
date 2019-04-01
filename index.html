@@ -29,14 +29,14 @@
             </div>
             <div>
                 <div id="entries" style="margin-left: 15px;"></div>
-                <input type="button" value="View Task List" style="margin: 15px;" class="btn btn-primary" id="all">
+                <input type="button" value="Clear All" style="margin: 15px;" class="btn btn-danger" id="all">
             </div>
         </div>
     </div>
     <script>
         document.querySelector("#btn").addEventListener("click", add);
-        document.querySelector("#all").addEventListener("click", readAll);
-        // document.querySelector("#del").addEventListener("click", clearAll);
+        document.querySelector("#all").addEventListener("click", clearList);
+        document.querySelector("#todo${item.itemid}").addEventListener("click", checkbox);
     </script>
 </body>
 </html>
