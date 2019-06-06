@@ -10,24 +10,25 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </head>
-<body style="background-image: url(to-do-list.jpg); background-size: cover; background-repeat: no-repeat;">
-    <div>
-        <div>
-            <div style="margin: 10px;">
-                <h1 style="text-shadow: 1px 1px 1px white;">Things To Do: </h1>
+<body style="background-image: url(to-do-list.png); background-size: cover; background-repeat: repeat;">
+        <div style="display: flex;justify-content: center;">
+            <div style="margin: 40px 0px 20px 0px;">
+                <h1 style="text-shadow: 1px 1px 1px white;">Task List: </h1>
             </div>
         </div>
-        <div>
-            <div style="border-bottom: 2px dashed #0069D9;">
+    <div style="display: flex; justify-content: center;">
+        <div style="background-color: white; border-radius: 5px; width: 500px; min-height: 400px;">
+            <div style="margin-left: 10px;">
                 <form>
-                    <label style="margin-left: 15px; margin-top: 5px; font-size: 20px;"><strong style="text-shadow: 1px 1px 12px white;">New task: </strong></label>
+                    <label style="margin-left: 15px; margin-top: 15px; font-size: 20px;"><strong style="text-shadow: 1px 1px 12px white;">New task: </strong></label>
     				<div>
-    					<input type="text" name="task" id="newTask" class="form-control" autofocus>
-    				</div>
-                    <input type="button" value="add" id="btn" style="margin: 15px;" class="btn-primary" onclick="addEntry()">
+    					<input type="text" style="float: left;" name="task" id="newTask" class="form-control" autofocus>
+                    <input type="button" value="add" id="btn" style="margin-left: 15px;" class="btn btn-primary" onclick="addEntry()">
+                    </div>
                 </form>
             </div>
-            <div>
+            <hr style="margin-right: 15px; margin-left: 15px; border-width: 3px; border-radius: 1px;">
+            <div style="margin-left: 10px;">
                 <div id="entries" style="margin-left: 15px;"></div>
                 <input type="button" value="Clear All" style="margin: 15px;" class="btn btn-danger" id="all">
             </div>

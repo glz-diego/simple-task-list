@@ -1,6 +1,6 @@
 const taskData = [
-   { id: new Date().getTime(), description: "task1" },
-   { id: new Date().getTime(), description: "task2" }
+  { id: new Date().getTime(), description: "task1" },
+    { id: new Date().getTime(), description: "task2" }
 ];
 
 let db;
@@ -15,7 +15,7 @@ function initDatabase() {
 
       //if a variant wasn't found, let the user know
    if (!window.indexedDB) {
-         window.alert("Your browser doesn't support a stable version of IndexedDB.")
+    window.alert("Your browser doesn't support a stable version of IndexedDB.")
    }
 
   var request = window.indexedDB.open("tasks", 4);
